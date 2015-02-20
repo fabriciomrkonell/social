@@ -11,7 +11,7 @@
     <link href="/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/index.css" rel="stylesheet">
   </head>
-  <body ng-controller="ctrl-index">
+  <body ng-controller="ctrl-index" class="ng-cloak">
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -43,10 +43,13 @@
                   <div class="form-login">
                     <form name="form">
                       <div class="form-group">
-                        <input type="text" class="form-control input-login" ng-model="login.email" placeholder="Email">
+                        <input type="text" class="form-control input-login" ng-model="login.email" placeholder="Email" ng-keypress="show()">
                       </div>
                       <div class="form-group">
-                        <input type="password" class="form-control input-login" ng-model="login.password" placeholder="Senha">
+                        <input type="password" class="form-control input-login" ng-model="login.password" placeholder="Senha" ng-keypress="show()">
+                      </div>
+                      <div class="form-group alert-login animate-show" ng-show="alertLogin">
+                        <label>Email ou senha inválidos!</label>
                       </div>
                       <button type="button" class="btn btn-default btn-lg btn-block btn-login" ng-click="login()">Entrar</button>
                     </form>
@@ -62,13 +65,16 @@
                   <div class="form-login">
                     <form name="form">
                       <div class="form-group">
-                        <input type="text" class="form-control input-login" ng-model="data.name" placeholder="Nome">
+                        <input type="text" class="form-control input-login" ng-model="data.name" placeholder="Nome" id="name" ng-keypress="show()">
                       </div>
                       <div class="form-group">
-                        <input type="text" class="form-control input-login" ng-model="data.email" placeholder="Email">
+                        <input type="text" class="form-control input-login" ng-model="data.email" placeholder="Email" id="email" ng-keypress="show()">
                       </div>
                       <div class="form-group">
-                        <input type="password" class="form-control input-login" ng-model="data.password" placeholder="Senha">
+                        <input type="password" class="form-control input-login" ng-model="data.password" placeholder="Senha" id="password" ng-keypress="show()">
+                      </div>
+                      <div class="form-group alert-login animate-show" ng-show="alertSave">
+                        <label>{{messageSave}}</label>
                       </div>
                       <button type="button" class="btn btn-default btn-lg btn-block btn-login" ng-click="save()">Cadastrar</button>
                     </form>
@@ -81,6 +87,7 @@
       </div>
     </div>
     <script type="text/javascript" src="/lib/angularjs/dist/angular.min.js"></script>
+    <script type="text/javascript" src="/lib/angularjs/dist/angular-animate.min.js"></script>
     <script type="text/javascript" src="/js/ctrl/index.js"></script>
   </body>
 </html>

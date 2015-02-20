@@ -1,10 +1,13 @@
 'use strict';
 
-angular.module("app", []);
+angular.module("app", ['ngAnimate']);
 
 angular.module("app").controller("ctrl-index", ['$scope', '$http', function($scope, $http){
 
 	angular.extend($scope, {
+		alertLogin: false,
+		alertSave: false,
+		messageSave: '',
 		data: {
 			name: '',
 			email: '',
@@ -21,7 +24,11 @@ angular.module("app").controller("ctrl-index", ['$scope', '$http', function($sco
 			if(data.success == 1){
 				window.location = '/';
 			}else{
-				alert("uSuário inválido");
+				$scope.alertLogin = true;
+				angular.extend($scope.login, {
+					email: '',
+					password: ''
+				});
 			}
     });
 	};
@@ -30,15 +37,23 @@ angular.module("app").controller("ctrl-index", ['$scope', '$http', function($sco
 		login($scope.login.email, $scope.login.password);
 	};
 
+	$scope.show = function(){
+		$scope.alertLogin = false;
+		$scope.alertSave = false;
+	};
+
 	$scope.save = function(){
 		$http.post('/user', $scope.data).success(function(data){
 			if(data.success == 1){
 				login(data.user.email, data.user.password);
+			}else if(data.success == 0){
+				$scope.messageSave = data.message;
+				$scope.alertSave = true;
+				document.getElementById(data.field).focus();
 			}else{
-				alert(data.message);
+				$scope.messageSave = data.message;
+				$scope.alertSave = true;
 			}
-		}).error(function(data){
-			console.log(data);
 		});
 	};
 
