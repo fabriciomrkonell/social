@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Rede Social Catarinense!">
+    <meta name="keywords" content="site, catarinense, santa catarina, rede social">
+    <title>Sou SC</title>
+    <link rel="shortcut icon" href="/img/icon.jpg">
+    <link href="/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/index.css" rel="stylesheet">
+  </head>
+  <body ng-controller="ctrl-index">
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="javascript:void(0)">A rede social de Santa Catarina</a>
+        </div>
+      </div>
+    </nav>
+    <div class="container container-home">
+      <div class="row">
+        <div class="col-sm-8">
+          <h1 class="title-home">Bem-vindo a rede social catarinense.</h1>
+          <p>
+            <h1 class="sub-title-home">
+              Compartilhe com seus amigos!
+              <br>
+              Saiba tudo o que está acontecendo no nosso estado.
+            </h1>
+            <br>
+            <h1 class="sub-title-home">
+              Vamos lá! Cadastre-se!
+            </h1>
+          </p>
+        </div>
+        <div class="col-sm-4">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="panel panel-default panel-login">
+                <div class="panel-body">
+                  <div class="form-login">
+                    <form name="form">
+                      <div class="form-group">
+                        <input type="text" class="form-control input-login" ng-model="login.email" placeholder="Email">
+                      </div>
+                      <div class="form-group">
+                        <input type="password" class="form-control input-login" ng-model="login.password" placeholder="Senha">
+                      </div>
+                      <button type="button" class="btn btn-default btn-lg btn-block btn-login" ng-click="login()">Entrar</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="panel panel-default panel-login">
+                <div class="panel-body">
+                  <div class="form-login">
+                    <form name="form">
+                      <div class="form-group">
+                        <input type="text" class="form-control input-login" ng-model="data.name" placeholder="Nome">
+                      </div>
+                      <div class="form-group">
+                        <input type="text" class="form-control input-login" ng-model="data.email" placeholder="Email">
+                      </div>
+                      <div class="form-group">
+                        <input type="password" class="form-control input-login" ng-model="data.password" placeholder="Senha">
+                      </div>
+                      <button type="button" class="btn btn-default btn-lg btn-block btn-login" ng-click="save()">Cadastrar</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="/lib/angularjs/dist/angular.min.js"></script>
+    <script type="text/javascript" src="/js/ctrl/index.js"></script>
+  </body>
+</html>

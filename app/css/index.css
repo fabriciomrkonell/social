@@ -1,0 +1,76 @@
+body{
+  background: url('/img/banner1.jpg') no-repeat fixed;
+  background-size: cover;
+}
+
+.container-home{
+  margin-top: 100px;
+}
+
+.panel-login{
+  background: none;
+  border-color: white;
+}
+
+.form-login{
+  border-radius: 10px
+}
+
+.input-login{
+  border-radius: 0px;
+  color: black;
+  outline: none;
+  box-shadow:none !important;
+  border:1px solid white;
+}
+
+.input-login:focus{
+  border-radius: 0px;
+  color: black;
+  outline: none;
+  box-shadow:none !important;
+  border:1px solid white;
+}
+
+.btn-login{
+  outline: none !important;
+  text-decoration: none;
+  border-color: white;
+  border-radius: 0px;
+  background: none;
+  color: white;
+}
+
+.btn-login:hover{
+  outline: none !important;
+  text-decoration: none;
+  border-color: white;
+  border-radius: 0px;
+  background: none;
+  color: white;
+}
+
+.btn-login:focus{
+  outline: none !important;
+  text-decoration: none;
+  border-color: white;
+  border-radius: 0px;
+  background: none;
+  color: white;
+}
+
+.title-home{
+  color: #fff;
+  font-size: 35px;
+  line-height: 44px;
+  margin-bottom: 30px;
+  text-shadow: none;
+}
+
+.sub-title-home{
+  color: #fff;
+  font-size: 25px;
+  line-height: 44px;
+  margin-bottom: 30px;
+  text-shadow: none;
+}
