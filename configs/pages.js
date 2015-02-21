@@ -6,7 +6,8 @@ exports.home = function(req, res, next) {
 		username: req.user.username,
 		message: req.user.message,
 		followers: req.user.followers,
-		following: req.user.following
+		following: req.user.following,
+		avatar: req.user.avatar
 	});
 };
 
@@ -30,6 +31,7 @@ exports.me = function(req, res, next) {
 		biography: req.user.biography,
 		created: req.user.createdAt,
 		followers: req.user.followers,
-		following: req.user.following
+		following: req.user.following,
+		avatar: req.user.avatar
 	});
 };

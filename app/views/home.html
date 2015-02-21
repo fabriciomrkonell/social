@@ -12,28 +12,7 @@
     <link href="/css/home.css" rel="stylesheet">
   </head>
   <body ng-controller="ctrl-home" class="ng-cloak">
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="/">Início</a>
-        </div>
-        <ul class="nav navbar-nav navbar-right">
-          <li class="dropdown">
-            <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-              Configurações &nbsp;<span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li>
-                <a href="/<%- username %>">Perfil</a>
-              </li>
-              <li>
-                <a href="/api/logout">Sair</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </nav>
+    <% include includes/header.html %>
     <div class="container container-home">
       <div class="row">
         <div class="col-sm-4">
@@ -45,7 +24,7 @@
               <div class="row row-me">
                 <div class="col-sm-5 text-center img-me-avatar-container">
                   <a href="/<%- username %>">
-                    <img class="img-me-avatar" src="https://pbs.twimg.com/profile_images/562273890815062016/qIGUYoRL_bigger.jpeg">
+                    <img class="img-me-avatar" src="data:image/jpeg;base64,<%- avatar %>">
                   </a>
                 </div>
                 <div class="col-sm-7">
@@ -108,7 +87,7 @@
                     <div class="row">
                       <div class="col-sm-2 text-center">
                         <a href="/<%- username %>">
-                          <img class="img-avatar-post" src="https://pbs.twimg.com/profile_images/562273890815062016/qIGUYoRL_bigger.jpeg">
+                          <img class="img-avatar-post" ng-src="/api/image/{{obj.User.id}}">
                         </a>
                       </div>
                       <div class="col-sm-10">

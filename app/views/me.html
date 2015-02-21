@@ -12,29 +12,8 @@
     <link href="/css/me.css" rel="stylesheet">
   </head>
   <body ng-controller="ctrl-me" class="ng-cloak">
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="/">Início</a>
-        </div>
-        <ul class="nav navbar-nav navbar-right">
-          <li class="dropdown">
-            <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-              Configurações &nbsp;<span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li>
-                <a href="/<%- username %>">Perfil</a>
-              </li>
-              <li>
-                <a href="/api/logout">Sair</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </nav>
-    <div class="container-me">
+    <% include includes/header.html %>
+    <div class="container-me image">
       <img class="img-me-banner" src="https://pbs.twimg.com/profile_banners/112698668/1422786963/600x200">
     </div>
      <div class="container-me">
@@ -42,8 +21,8 @@
         <div class="container">
           <div class="row">
             <div class="col-sm-3">
-              <div class="img-me-avatar-container">
-                <img class="img-me-avatar thumbnail" src="https://pbs.twimg.com/profile_images/562273890815062016/qIGUYoRL_400x400.jpeg">
+              <div class="img-me-avatar-container text-center image">
+                <img class="img-me-avatar thumbnail" src="data:image/jpeg;base64,<%- avatar %>">
               </div>
             </div>
             <div class="col-sm-5">
@@ -146,7 +125,7 @@
               <div ng-repeat="obj in messages">
                 <div class="row">
                   <div class="col-sm-2 text-center">
-                    <img class="img-avatar-post" src="https://pbs.twimg.com/profile_images/562273890815062016/qIGUYoRL_bigger.jpeg">
+                    <img class="img-avatar-post" ng-src="/api/image/{{obj.User.id}}">
                   </div>
                   <div class="col-sm-10">
                     <span class="name-user-message">{{obj.User.name}}</span>

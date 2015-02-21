@@ -24,7 +24,7 @@ exports.all = function(req, res, next) {
   db.Message.findAll({
     include: [ {
       model: db.User,
-      attributes: ['id', 'name', 'username']
+      attributes: ['id', 'name', 'username', 'avatar']
     }],
     order: 'CreatedAt DESC',
     limit: 100

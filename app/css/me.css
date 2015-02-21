@@ -112,3 +112,27 @@ body{
 textarea{
   resize: none;
 }
+
+.image {
+  position:relative;
+}
+
+.image:after, .image:before {
+  position:absolute;
+  opacity:0;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+}
+.image:after {
+  content:'\A';
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+  background:rgba(0,0,0,0.6);
+}
+
+.image:hover:after, .image:hover:before {
+  cursor: pointer;
+  opacity:0.5;
+}
