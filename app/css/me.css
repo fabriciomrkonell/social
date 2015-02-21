@@ -26,6 +26,9 @@ body{
   margin-top: 80px;
 }
 
+.panel-body-me{
+  padding: 15px 15px 0px 15px;
+}
 
 .img-me-banner{
   background-size: 100%;

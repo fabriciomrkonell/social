@@ -121,6 +121,7 @@ app.post('/api/login',
 });
 
 app.post('/api/user', user.persist)
+app.post('/api/update', isAuthenticatedPage, user.update)
 app.post('/api/write', isAuthenticatedPage, message.persist)
 
 db.sequelize.sync({ force: false }).complete(function(err) {

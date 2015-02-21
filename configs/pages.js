@@ -26,6 +26,8 @@ exports.me = function(req, res, next) {
 		username: req.user.username,
 		message: req.user.message,
 		location: req.user.location,
+		website: req.user.website,
+		biography: req.user.biography,
 		created: req.user.createdAt,
 		followers: req.user.followers,
 		following: req.user.following

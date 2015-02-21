@@ -72,9 +72,9 @@
               </ul>
             </div>
             <div class="col-sm-4">
-              <button type="button" class="btn btn-primary btn-save pull-right" ng-show="edit == true" ng-click="edit = true">Salvar alterações</button>
-              <button type="button" class="btn btn-default btn-save pull-right" ng-show="edit == true" ng-click="edit = true">Cancelar</button>
-              <button type="button" class="btn btn-default btn-edit pull-right" ng-show="edit == false" ng-click="edit = true">
+              <button type="button" class="btn btn-primary btn-save pull-right" ng-show="edit == true" ng-click="saveUser()">Salvar alterações</button>
+              <button type="button" class="btn btn-default btn-save pull-right" ng-show="edit == true" ng-click="cancelUser()">Cancelar</button>
+              <button type="button" class="btn btn-default btn-edit pull-right" ng-show="edit == false" ng-click="editUser();">
                 <i class="glyphicon glyphicon-edit"></i>&nbsp;&nbsp;Editar perfil
               </button>
             </div>
@@ -88,24 +88,25 @@
           <div class="panel panel-default panel-messages-edit" ng-show="edit != true">
             <div class="panel-body">
               <div class="row">
-                <div class="col-sm-12 me-edit-name"><%- user %></div>
+                <div class="col-sm-12 me-edit-name">{{data.name}}</div>
               </div>
               <div class="row">
                 <div class="col-sm-12 me-edit-username">@<%- username %></div>
               </div>
               <br>
               <div class="row" ng-show="showInfo('biography')">
-                <div class="col-sm-12 me-edit-bio">Web Developer. Student Information Systems. Researcher in robotics.</div>
-                <br>
+                <div class="col-sm-12 me-edit-bio">{{data.biography}}</div>
               </div>
+              <br ng-show="showInfo('biography')">
               <div class="row" ng-show="showInfo('location')">
                 <div class="col-sm-12 me-edit-location">
-                  <i class="glyphicon glyphicon-map-marker icon"></i>&nbsp;Schroeder
+                  <i class="glyphicon glyphicon-map-marker icon"></i>&nbsp;{{data.location}}
                 </div>
               </div>
               <div class="row" ng-show="showInfo('website')">
                 <div class="col-sm-12 me-edit-site">
-                  <i class="glyphicon glyphicon-globe icon"></i>&nbsp;fabricioronchi.com
+                  <i class="glyphicon glyphicon-globe icon"></i>
+                  <a href="{{data.website}}">{{data.website}}</a>
                 </div>
               </div>
               <div class="row">
@@ -116,15 +117,15 @@
             </div>
           </div>
           <div class="panel panel-default panel-messages-edit" ng-show="edit == true">
-            <div class="panel-body">
+            <div class="panel-body-me">
               <form>
                 <div class="form-group">
                   <label>Nome</label>
-                  <input type="text" class="form-control" placeholder="Nome" value="<%- user %>" maxlength="20" ng-model="data.name" id="name">
+                  <input type="text" class="form-control" placeholder="Nome" value="<%- user %>" maxlength="20" ng-model="data.name" id="user">
                 </div>
                 <div class="form-group">
                   <label>Biografia</label>
-                  <textarea type="text" class="form-control" placeholder="Biografia" maxlength="160" rows="5" value="<%- user %>" ng-model="data.biography" id="biography"></textarea>
+                  <textarea type="text" class="form-control" placeholder="Biografia" maxlength="160" rows="5" ng-model="data.biography" id="biography"><%- biography %></textarea>
                 </div>
                 <div class="form-group">
                   <label>Localização</label>
@@ -132,7 +133,7 @@
                 </div>
                 <div class="form-group">
                   <label>Website</label>
-                  <input type="text" class="form-control" placeholder="Website" value="<%- user %>" maxlength="100">
+                  <input type="text" class="form-control" placeholder="Website" value="<%- website %>" maxlength="100" ng-model="data.website" id="website">
                 </div>
                 <input ng-show="false" type="text" value="<%- created %>" ng-model="data.created" id="created">
               </form>

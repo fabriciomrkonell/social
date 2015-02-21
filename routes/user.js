@@ -56,3 +56,13 @@ exports.persist = function(req, res, next) {
     });
   }
 };
+
+exports.update = function(req, res, next) {
+  db.User.find({
+    where: {
+      id: req.user.id
+    }
+  }).success(function(entity) {
+    entity.updateAttributes(req.body);
+  });
+};

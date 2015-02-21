@@ -21,13 +21,17 @@ angular.module("app").controller("ctrl-me", ['$scope', '$http', function($scope,
 		tab: 1,
 		edit: false,
 		messages: [],
+		dataCopy: {},
 		data: {
-			name: $("#name").val(),
+			name: $("#user").val(),
 			biography: $("#biography").val(),
 			location: $("#location").val(),
+			website: $("#website").val(),
 			created: new Date($("#created").val())
 		}
 	});
+
+	var data;
 
 	$http.get("/api/message/me").success(function(data){
 		if(data.success == 1){
@@ -40,6 +44,21 @@ angular.module("app").controller("ctrl-me", ['$scope', '$http', function($scope,
 			return false;
 		}
 		return true;
+	};
+
+	$scope.editUser = function(){
+		angular.copy($scope.data, $scope.dataCopy);
+		$scope.edit = true;
+	};
+
+	$scope.cancelUser = function(){
+		$scope.data = $scope.dataCopy;
+		$scope.edit = false;
+	};
+
+	$scope.saveUser = function(tab){
+		$http.post("/api/update", $scope.data);
+		$scope.edit = false;
 	};
 
 	$scope.setTab = function(tab){
