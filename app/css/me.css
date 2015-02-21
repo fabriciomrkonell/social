@@ -1,0 +1,111 @@
+body{
+  background-color: #eee;
+  background-size: cover;
+}
+
+.container-me{
+  margin-top: 50px;
+}
+
+.navbar-default{
+  background-color: white;
+}
+
+.panel-me{
+  background: white;
+  border-color: white;
+  margin-top: -50px;
+  height: 70px;
+}
+
+.panel-messages-me{
+  margin-top: 10px;
+}
+
+.panel-messages-edit{
+  margin-top: 80px;
+}
+
+
+.img-me-banner{
+  background-size: 100%;
+  height: 270px;
+  width: 100%;
+}
+
+.ng-cloak{
+  display: none;
+}
+
+.img-me-avatar-container{
+  width: 200px;
+  margin-top: -70px;
+}
+
+.img-me-avatar{
+  width: 100%;
+}
+
+.nav-tabs-me{
+  margin-top: 13px;
+  border-bottom: none;
+}
+
+.nav-tabs-me-label{
+  color: black;
+  font-size: 18px;
+}
+
+.nav-tabs-me-title{
+  color: #66757f;
+}
+
+.tabs-me {
+  position: relative !important;
+  display: block !important;
+  padding: 5px 10px !important;
+}
+
+.name-user-message{
+  font-size: 16px;
+  font-weight: bold;
+  color: #292f33;
+}
+
+.date-user-message{
+  float: right;
+}
+
+.img-avatar-post{
+  border-radius: 7px;
+  height: 70px;
+  width: 70px;
+}
+
+.btn-edit{
+  margin-top: 20px;
+}
+
+.btn-save{
+ margin-top: 20px;
+ margin-left: 20px;
+}
+
+.me-edit-name{
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+  word-wrap: break-word
+}
+
+.me-edit-username{
+  color: #8899a6;
+}
+
+.icon{
+  margin: 7px 5px 0px 0px;
+}
+
+textarea{
+  resize: none;
+}

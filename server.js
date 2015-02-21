@@ -110,6 +110,7 @@ app.get('/api/me', isAuthenticatedPage, function(req, res, next){
 });
 
 app.get('/api/message', isAuthenticated, message.all)
+app.get('/api/message/me', isAuthenticated, message.all)
 
 app.post('/api/login',
   passport.authenticate('local', {

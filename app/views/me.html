@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Rede Social Catarinense!">
+    <meta name="keywords" content="site, catarinense, santa catarina, rede social">
+    <title>Sou SC</title>
+    <link rel="shortcut icon" href="/img/icon.jpg">
+    <link href="/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/me.css" rel="stylesheet">
+  </head>
+  <body ng-controller="ctrl-me" class="ng-cloak">
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">Início</a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              Configurações &nbsp;<span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="/<%- username %>">Perfil</a>
+              </li>
+              <li>
+                <a href="/api/logout">Sair</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container-me">
+      <img class="img-me-banner" src="https://pbs.twimg.com/profile_banners/112698668/1422786963/600x200">
+    </div>
+     <div class="container-me">
+      <div class="panel-me">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="img-me-avatar-container">
+                <img class="img-me-avatar thumbnail" src="https://pbs.twimg.com/profile_images/562273890815062016/qIGUYoRL_400x400.jpeg">
+              </div>
+            </div>
+            <div class="col-sm-5">
+              <ul class="nav nav-tabs nav-tabs-me">
+                <li class="text-center" ng-class="{ active: tab == 1}" ng-click="setTab(1)">
+                  <a href="javascript:void(0)" class="tabs-me">
+                    <span class="nav-tabs-me-title">Mensagens</span>
+                    <br>
+                    <span class="nav-tabs-me-label"><%- message %></span>
+                  </a>
+                </li>
+                <li class="text-center" ng-class="{ active: tab == 2}" ng-click="setTab(2)">
+                  <a href="javascript:void(0)" class="tabs-me">
+                    <span class="nav-tabs-me-title">Seguidores</span>
+                    <br>
+                    <span class="nav-tabs-me-label"><%- followers %></span>
+                  </a>
+                </li>
+                <li class="text-center" ng-class="{ active: tab == 3}" ng-click="setTab(3)">
+                  <a href="javascript:void(0)" class="tabs-me">
+                    <span class="nav-tabs-me-title">Seguindo</span>
+                    <br>
+                    <span class="nav-tabs-me-label"><%- following %></span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-sm-4">
+              <button type="button" class="btn btn-primary btn-save pull-right" ng-show="edit == true" ng-click="edit = true">Salvar alterações</button>
+              <button type="button" class="btn btn-default btn-save pull-right" ng-show="edit == true" ng-click="edit = true">Cancelar</button>
+              <button type="button" class="btn btn-default btn-edit pull-right" ng-show="edit == false" ng-click="edit = true">
+                <i class="glyphicon glyphicon-edit"></i>&nbsp;&nbsp;Editar perfil
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="panel panel-default panel-messages-edit" ng-show="edit != true">
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-sm-12 me-edit-name"><%- user %></div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12 me-edit-username">@<%- username %></div>
+              </div>
+              <br>
+              <div class="row" ng-show="showInfo('biography')">
+                <div class="col-sm-12 me-edit-bio">Web Developer. Student Information Systems. Researcher in robotics.</div>
+                <br>
+              </div>
+              <div class="row" ng-show="showInfo('location')">
+                <div class="col-sm-12 me-edit-location">
+                  <i class="glyphicon glyphicon-map-marker icon"></i>&nbsp;Schroeder
+                </div>
+              </div>
+              <div class="row" ng-show="showInfo('website')">
+                <div class="col-sm-12 me-edit-site">
+                  <i class="glyphicon glyphicon-globe icon"></i>&nbsp;fabricioronchi.com
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12 me-edit-site">
+                  <i class="glyphicon glyphicon-info-sign icon"></i>&nbsp;Participa desde  {{ data.created | date:'dd/MM/yyyy'}}.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default panel-messages-edit" ng-show="edit == true">
+            <div class="panel-body">
+              <form>
+                <div class="form-group">
+                  <label>Nome</label>
+                  <input type="text" class="form-control" placeholder="Nome" value="<%- user %>" maxlength="20" ng-model="data.name" id="name">
+                </div>
+                <div class="form-group">
+                  <label>Biografia</label>
+                  <textarea type="text" class="form-control" placeholder="Biografia" maxlength="160" rows="5" value="<%- user %>" ng-model="data.biography" id="biography"></textarea>
+                </div>
+                <div class="form-group">
+                  <label>Localização</label>
+                  <input type="text" class="form-control" placeholder="Localização" value="<%- location %>" maxlength="30" ng-model="data.location" id="location">
+                </div>
+                <div class="form-group">
+                  <label>Website</label>
+                  <input type="text" class="form-control" placeholder="Website" value="<%- user %>" maxlength="100">
+                </div>
+                <input ng-show="false" type="text" value="<%- created %>" ng-model="data.created" id="created">
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-9">
+          <div class="panel panel-default panel-messages-me" ng-show="messages.length > 0">
+            <div class="panel-body">
+              <div ng-repeat="obj in messages">
+                <div class="row">
+                  <div class="col-sm-2 text-center">
+                    <img class="img-avatar-post" src="https://pbs.twimg.com/profile_images/562273890815062016/qIGUYoRL_bigger.jpeg">
+                  </div>
+                  <div class="col-sm-10">
+                    <span class="name-user-message">{{obj.User.name}}</span>
+                    <span class="date-user-message">{{obj.createdAt | date:'HH:mm dd/MM/yyyy'}}</span>
+                    <br>
+                    <span class="message-user-message">{{obj.message}}</span>
+                  </div>
+                </div>
+                <hr ng-if="($index + 1) != messages.length">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="/lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="/lib/angularjs/dist/angular.min.js"></script>
+    <script type="text/javascript" src="/lib/angularjs/dist/angular-animate.min.js"></script>
+    <script type="text/javascript" src="/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/ctrl/me.js"></script>
+  </body>
+</html>

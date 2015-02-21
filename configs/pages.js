@@ -5,7 +5,7 @@ exports.home = function(req, res, next) {
 		user: req.user.name,
 		username: req.user.username,
 		message: req.user.message,
-		follow: req.user.follow,
+		followers: req.user.followers,
 		following: req.user.following
 	});
 };
@@ -15,7 +15,7 @@ exports.user = function(req, res, next) {
 		user: req.user.name,
 		username: req.user.username,
 		message: req.user.message,
-		follow: req.user.follow,
+		followers: req.user.followers,
 		following: req.user.following
 	});
 };
@@ -25,7 +25,9 @@ exports.me = function(req, res, next) {
 		user: req.user.name,
 		username: req.user.username,
 		message: req.user.message,
-		follow: req.user.follow,
+		location: req.user.location,
+		created: req.user.createdAt,
+		followers: req.user.followers,
 		following: req.user.following
 	});
 };

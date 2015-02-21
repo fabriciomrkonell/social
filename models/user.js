@@ -13,10 +13,22 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(25),
       unique: true
     },
+    status: {
+      type: DataTypes.BOOLEAN
+    },
+    biography: {
+      type: DataTypes.STRING(160)
+    },
+    location: {
+      type: DataTypes.STRING(30)
+    },
+    website: {
+      type: DataTypes.STRING(100)
+    },
     message: {
       type: DataTypes.INTEGER,
     },
-    follow: {
+    followers: {
       type: DataTypes.INTEGER,
     },
     following: {
