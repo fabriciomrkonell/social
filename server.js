@@ -12,7 +12,9 @@ var express = require('express'),
     flash = require('connect-flash'),
     LocalStrategy = require('passport-local').Strategy,
     user = require('./routes/user'),
+    message = require('./routes/message'),
     route_passport = require('./routes/passport'),
+    pages = require('./configs/pages'),
     socketio = require('socket.io'),
     io = socketio.listen(http),
     client = null;
@@ -20,6 +22,8 @@ var express = require('express'),
 app.set('port', process.env.PORT || 3000)
 app.use(bodyParser())
 app.use(express.static(path.join(__dirname, 'app')))
+app.set('views', path.join(__dirname, 'app/views'));
+app.engine('html', require('ejs').renderFile);
 
 app.configure(function() {
   app.use(express.logger());
@@ -78,7 +82,7 @@ passport.use(new LocalStrategy(
 
 app.get('/', function(req, res, next){
   if(req.user){
-    res.sendfile('app/views/home.html');
+    pages.home(req, res, next);
   }else{
     res.sendfile('app/views/index.html');
   }
@@ -93,6 +97,12 @@ app.get('/error', function(req, res, next){
   res.json({ success: 0 });
 });
 
+app.get('/me', isAuthenticatedPage, function(req, res, next){
+  res.json({ name: req.user.name });
+});
+
+app.get('/message', isAuthenticated, message.all)
+
 app.post('/login',
   passport.authenticate('local', {
     failureRedirect: '/error',
@@ -102,6 +112,7 @@ app.post('/login',
 });
 
 app.post('/user', user.persist)
+app.post('/write', isAuthenticatedPage, message.persist)
 
 db.sequelize.sync({ force: false }).complete(function(err) {
   if (err) {

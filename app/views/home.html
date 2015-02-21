@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="app">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -8,109 +8,107 @@
     <meta name="keywords" content="site, catarinense, santa catarina, rede social">
     <title>Sou SC</title>
     <link rel="shortcut icon" href="/img/icon.jpg">
-    <link rel="author" href="fabricioronchi.com">
-
-    <!-- Bootstrap core CSS -->
-    <link href="http://olacador.rs/public/css/bootstrap.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="http://olacador.rs/public/css/main.css" rel="stylesheet">
-
-     <!-- FLAT UI CSS -->
-    <link href="http://olacador.rs/public/css/flat-ui.css" rel="stylesheet">
-
-<link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet" type="text/css">
-<link rel="canonical" href="http://olacador.rs/">
-</head>
-
-  <body id="index-login">
-  	<!-- navbar -->
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    	<!-- container -->
+    <link href="/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/home.css" rel="stylesheet">
+  </head>
+  <body ng-controller="ctrl-home" class="ng-cloak">
+    <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
-      	<div class="popout"></div>
-
-      	<!-- navbar-header -->
         <div class="navbar-header">
-          <a class="navbar-brand">
-          	<img src="http://olacador.rs/public/img/logo.png" class="logo">
-          	</a>
-        </div><!-- navbar-header -->
-
-        <!-- collapse-->
-      </div><!--/.container -->
-    </div><!-- navbar -->
-
-    <!-- container -->
-    <div class="container container-main">
-    	<!-- col-md -->
-    	<div class="col-md-8 col-pb">
-    			<h1 class="title-home">O Laçador</h1>
-    			<h6 class="sub-title-home">
-    				Tchê! Seja bem-vindo(a) ao microblog do RS!<br><br>Compartilhe ideias, eventos e acontecimentos do nosso Estado!<br>Saiba tudo o que está acontecendo por aqui...<br><br>Lace novas amizades!    				</h6>
-
-    	</div><!--/col-md-8 -->
-
-      <!-- col-md -->
-      <div class="col-md-4">
-
-      	<!-- Start Login Form -->
-      	<div class="panel panel-default panel-login">
-
-          <div class="login-form">
-
-          	<!-- recover form -->
-          	<form style="display: none;" action="" method="post" name="form" id="recover_pass_form" class="recoverForm">
-	            <div class="form-group">
-	              <input type="text" class="form-control login-field" name="email_recover" id="email_recover" placeholder="Digite o teu e-mail" title="Digite o teu e-mail" autocomplete="off">
-	              <label class="login-field-icon fui-mail" for="email_recover"></label>
-	            </div>
-	            <div class="alert alert-danger" id="error_recover" role="alert"></div>
-	            <div class="alert alert-success" id="success_recover" role="alert"></div>
-
-	            <button type="submit" class="btn btn-primary btn-lg btn-block" id="buttonRecoverPass">Enviar</button>
-	            <a class="login-link link-home buttonBack" href="javascript:void(0);"><i class="fa fa-arrow-left"></i> Voltar</a>
-
-
-          </form><!--./form -->
-
-
-          	<form action="" method="post" name="form" id="signin_form" class="signInForm">
-	            <div class="form-group">
-	              <input type="text" class="form-control login-field" name="user" id="user" placeholder="Nome de usuário ou e-mail" title="Nome de usuário ou e-mail" autocomplete="off">
-	              <label class="login-field-icon fui-user" for="user"></label>
-	            </div>
-
-	            <div class="form-group">
-	              <input type="password" class="form-control login-field" name="password" id="password_signin" placeholder="Senha" title="Senha" autocomplete="off">
-	              <label class="login-field-icon fui-lock" for="password_signin"></label>
-	            </div>
-
-	            <div class="alert alert-danger" id="error" role="alert"></div>
-	            <div class="alert alert-success" id="success_signin" role="alert"></div>
-
-	            <button type="submit" class="btn btn-primary btn-lg btn-block" id="buttonSignIn" data-wait="Por favor, aguarde ...">Entrar</button>
-
-
-	            <a class="login-link link-home buttonForgot" href="javascript:void(0);">Esqueceu tua senha?</a>
-
-	            <div class="btn-block text-center">
-	            	<label class="checkbox-inline">
-					  <input type="checkbox" value="1" name="Keeplogged" id="Keeplogged" tabindex="3" autocomplete="off">
-					   <span class="label-terms">Mantenha-me conectado</span>
-					</label>
-	            </div>
-
-	          </form></div><!-- login-form -->
-          <!--./form -->
-        </div><!-- /End panel-login -->
-
-      </div><!--/col-md-4 -->
-
-
-    </div><!-- /.container -->
-
-
-
-
-</body></html>
+          <a class="navbar-brand" href="javascript:void(0)">A rede social de Santa Catarina</a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="javascript:void(0)" data-toggle="dropdown" id="menu-user">
+              <%- user %>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container container-home">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="panel panel-default panel-me">
+            <div class="panel-me-body">
+              <img class="img-me-banner" src="https://pbs.twimg.com/profile_banners/112698668/1422786963/600x200">
+              <div class="row row-me">
+                <div class="col-sm-5 text-center img-me-avatar-container">
+                  <img class="img-me-avatar" src="https://pbs.twimg.com/profile_images/562273890815062016/qIGUYoRL_bigger.jpeg" alt="">
+                </div>
+                <div class="col-sm-7">
+                  <span class="title-me-name"><%- user %></span>
+                </div>
+              </div>
+              <div class="row row-me">
+                <div class="col-sm-4 text-center">
+                  <span class="title-me">Mensagens</span>
+                  <span class="title-me-data"><%- message %></span>
+                </div>
+                <div class="col-sm-4 text-center">
+                  <span class="title-me">Seguindo</span>
+                  <span class="title-me-data"><%- following %></span>
+                </div>
+                <div class="col-sm-4 text-center">
+                  <span class="title-me">Seguidores</span>
+                  <span class="title-me-data"><%- follow %></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-8">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="panel panel-default panel-login">
+                <div class="panel-body panel-write">
+                  <div class="form-login">
+                    <form name="form">
+                      <div class="form-group">
+                        <textarea class="form-control" rows="3" placeholder="O que está acontecendo?" ng-model="message"></textarea>
+                      </div>
+                      <div class="form-group pull-right">
+                        <button ng-disabled="disabledWrite(message)" type="button" class="btn btn-primary btn-login" ng-click="write()">
+                          <i class="glyphicon glyphicon-pencil"></i>&nbsp;&nbsp;Enviar</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="panel panel-default panel-login">
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-sm-2 text-center">
+                      <img class="img-avatar-post" src="https://pbs.twimg.com/profile_images/562273890815062016/qIGUYoRL_bigger.jpeg" alt="">
+                    </div>
+                    <div class="col-sm-10">
+                      s
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-2 text-center">
+                      <img class="img-avatar-post" src="https://pbs.twimg.com/profile_images/562273890815062016/qIGUYoRL_bigger.jpeg" alt="">
+                    </div>
+                    <div class="col-sm-10">
+                      s
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="/lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="/lib/angularjs/dist/angular.min.js"></script>
+    <script type="text/javascript" src="/lib/angularjs/dist/angular-animate.min.js"></script>
+    <script type="text/javascript" src="/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/ctrl/home.js"></script>
+  </body>
+</html>

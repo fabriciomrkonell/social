@@ -1,0 +1,111 @@
+body{
+  background-color: #eee;
+  background-size: cover;
+}
+
+.container-home{
+  margin-top: 70px;
+}
+
+.navbar-default{
+  background-color: white;
+}
+
+.panel-me{
+  background: white;
+  border-color: white;
+}
+
+.panel-me-body{
+  padding: 0px;
+}
+
+.img-me-banner{
+  border-radius: 4px 4px 0px 0px;
+  background-size: 100%;
+  height: 100px;
+  width: 100%;
+}
+
+.img-me-avatar{
+  border-radius: 7px;
+  height: 90px;
+  width: 90px;
+}
+
+.img-me-avatar-container{
+  margin-top: -50px;
+}
+
+.ng-cloak{
+  display: none;
+}
+
+.menu-close-link {
+  text-decoration: none;
+  color: black;
+}
+
+.menu-close-link:hover {
+  text-decoration: none;
+  color: black;
+}
+
+.title-me{
+  color: #8c9ca9;
+  font-size: 10px;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  transition: color .15s ease-in-out;
+  overflow: hidden;
+}
+
+.title-me-data{
+  display: block;
+  font-size: 18px;
+  padding-top: 3px;
+  font-weight: 500;
+  color: #0084B4;
+  transition: color .15s ease-in-out;
+}
+
+.title-me-name{
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21px;
+  margin-top: 15px;
+  margin-left: -10px;
+  display: block;
+}
+
+.row-me{
+  padding: 5px;
+}
+
+textarea{
+  resize: none;
+  border-radius: 0px;
+  color: black;
+  outline: none;
+  box-shadow:none !important;
+  border: 1px solid #eee !important;
+}
+
+textarea:focus{
+  resize: none;
+  border-radius: 0px;
+  color: black;
+  outline: none;
+  box-shadow:none !important;
+  border: 1px solid #eee !important;
+}
+
+.panel-write{
+  margin-bottom: -15px;
+}
+
+.img-avatar-post{
+  border-radius: 7px;
+  height: 70px;
+  width: 70px;
+}

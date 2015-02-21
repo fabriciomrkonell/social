@@ -8,12 +8,12 @@ angular.module("app").controller("ctrl-index", ['$scope', '$http', function($sco
 		alertLogin: false,
 		alertSave: false,
 		messageSave: '',
+		logon: {
+			email: 'fabricioronchii@gmail.com',
+			password: 'fabricio'
+		},
 		data: {
 			name: '',
-			email: '',
-			password: ''
-		},
-		login: {
 			email: '',
 			password: ''
 		}
@@ -25,7 +25,7 @@ angular.module("app").controller("ctrl-index", ['$scope', '$http', function($sco
 				window.location = '/';
 			}else{
 				$scope.alertLogin = true;
-				angular.extend($scope.login, {
+				angular.extend($scope.logon, {
 					email: '',
 					password: ''
 				});
@@ -34,7 +34,7 @@ angular.module("app").controller("ctrl-index", ['$scope', '$http', function($sco
 	};
 
 	$scope.login = function(){
-		login($scope.login.email, $scope.login.password);
+		login($scope.logon.email, $scope.logon.password);
 	};
 
 	$scope.show = function(){

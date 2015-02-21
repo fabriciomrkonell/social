@@ -9,10 +9,25 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(100),
       unique: true
     },
+    message: {
+      type: DataTypes.INTEGER,
+    },
+    follow: {
+      type: DataTypes.INTEGER,
+    },
+    following: {
+      type: DataTypes.INTEGER,
+    },
     password: {
       type: DataTypes.TEXT,
       set: function(password) {
         this.setDataValue('password', passwordHash.generate(password));
+      }
+    }
+  }, {
+    classMethods: {
+      associate: function(models) {
+        User.hasMany(models.Message, { onDelete: 'cascade' });
       }
     }
   });

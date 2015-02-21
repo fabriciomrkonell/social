@@ -22,6 +22,9 @@ function isValid(user, res){
 
 exports.persist = function(req, res, next) {
   if(isValid(req.body, res)){
+    req.body.message = 0;
+    req.body.follow = 0;
+    req.body.following = 0;
     db.User.create(req.body).success(function(entity) {
       res.json({ success: 1, user: req.body })
     }).error(function(error){
