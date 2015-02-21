@@ -21,7 +21,14 @@ function refresh(user, type){
 };
 
 exports.all = function(req, res, next) {
-  db.Message.findAll().success(function(entity){
+  db.Message.findAll({
+    include: [ {
+      model: db.User,
+      attributes: ['id', 'name', 'username']
+    }],
+    order: 'CreatedAt DESC',
+    limit: 100
+  }).success(function(entity){
     res.json({ success: 1, data: entity })
   });
 };
@@ -35,7 +42,17 @@ exports.persist = function(req, res, next) {
     req.body.UserId = req.user.id;
     db.Message.create(req.body).success(function(entity) {
       refresh(req.user.id, 'message');
-      res.json({ success: 1, message: entity })
+      var _return = {
+        id: entity.id,
+        message: entity.message,
+        createdAt: entity.createdAt,
+        User: {
+          id: req.user.id,
+          name: req.user.name,
+          username: req.user.username
+        }
+      };
+      res.json({ success: 1, data: _return })
     }).error(function(error){
       res.json({ success: 2 })
     });

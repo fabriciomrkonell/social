@@ -15,12 +15,13 @@ angular.module("app").controller("ctrl-index", ['$scope', '$http', function($sco
 		data: {
 			name: '',
 			email: '',
+			username: '',
 			password: ''
 		}
 	});
 
 	function login(email, password){
-		$http.post('/login', { username: email, password: password }).success(function(data){
+		$http.post('/api/login', { username: email, password: password }).success(function(data){
 			if(data.success == 1){
 				window.location = '/';
 			}else{
@@ -43,7 +44,7 @@ angular.module("app").controller("ctrl-index", ['$scope', '$http', function($sco
 	};
 
 	$scope.save = function(){
-		$http.post('/user', $scope.data).success(function(data){
+		$http.post('/api/user', $scope.data).success(function(data){
 			if(data.success == 1){
 				login(data.user.email, data.user.password);
 			}else if(data.success == 0){

@@ -18,12 +18,17 @@
           <a class="navbar-brand" href="javascript:void(0)">A rede social de Santa Catarina</a>
         </div>
         <ul class="nav navbar-nav navbar-right">
-          <li class="dropdown">
-            <a href="javascript:void(0)" data-toggle="dropdown" id="menu-user">
-              <%- user %>
-            </a>
-          </li>
-        </ul>
+            <li class="dropdown">
+              <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                Configurações &nbsp;<span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="/api/logout">Sair</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
       </div>
     </nav>
     <div class="container container-home">
@@ -31,27 +36,42 @@
         <div class="col-sm-4">
           <div class="panel panel-default panel-me">
             <div class="panel-me-body">
-              <img class="img-me-banner" src="https://pbs.twimg.com/profile_banners/112698668/1422786963/600x200">
+              <a href="<%- username %>">
+                <img class="img-me-banner" src="https://pbs.twimg.com/profile_banners/112698668/1422786963/600x200">
+              </a>
               <div class="row row-me">
                 <div class="col-sm-5 text-center img-me-avatar-container">
-                  <img class="img-me-avatar" src="https://pbs.twimg.com/profile_images/562273890815062016/qIGUYoRL_bigger.jpeg" alt="">
+                  <a href="<%- username %>">
+                    <img class="img-me-avatar" src="https://pbs.twimg.com/profile_images/562273890815062016/qIGUYoRL_bigger.jpeg">
+                  </a>
                 </div>
                 <div class="col-sm-7">
-                  <span class="title-me-name"><%- user %></span>
+                  <span class="title-me-name">
+                    <a href="<%- username %>"><%- user %></a>
+                  </span>
+                  <span class="title-me-username">
+                    <a href="<%- username %>"><%- username %></a>
+                    </span>
                 </div>
               </div>
               <div class="row row-me">
                 <div class="col-sm-4 text-center">
                   <span class="title-me">Mensagens</span>
-                  <span class="title-me-data"><%- message %></span>
+                  <span class="title-me-data">
+                    <a href="<%- username %>" id="me-message"><%- message %></a>
+                  </span>
                 </div>
                 <div class="col-sm-4 text-center">
                   <span class="title-me">Seguindo</span>
-                  <span class="title-me-data"><%- following %></span>
+                  <span class="title-me-data">
+                    <a href="<%- username %>"><%- following %></a>
+                    </span>
                 </div>
                 <div class="col-sm-4 text-center">
                   <span class="title-me">Seguidores</span>
-                  <span class="title-me-data"><%- follow %></span>
+                  <span class="title-me-data">
+                    <a href="<%- username %>"><%- follow %></a>
+                  </span>
                 </div>
               </div>
             </div>
@@ -65,10 +85,10 @@
                   <div class="form-login">
                     <form name="form">
                       <div class="form-group">
-                        <textarea class="form-control" rows="3" placeholder="O que está acontecendo?" ng-model="message"></textarea>
+                        <textarea class="form-control" rows="3" placeholder="O que está acontecendo?" ng-model="message" maxlength="150" ng-keypress="write($event)"></textarea>
                       </div>
                       <div class="form-group pull-right">
-                        <button ng-disabled="disabledWrite(message)" type="button" class="btn btn-primary btn-login" ng-click="write()">
+                        <button ng-disabled="disabledWrite(message)" type="button" class="btn btn-primary btn-login" ng-click="write($event)">
                           <i class="glyphicon glyphicon-pencil"></i>&nbsp;&nbsp;Enviar</button>
                       </div>
                     </form>
@@ -77,26 +97,25 @@
               </div>
             </div>
           </div>
-          <div class="row">
+          <div class="row" ng-show="messages.length > 0">
             <div class="col-sm-12">
               <div class="panel panel-default panel-login">
                 <div class="panel-body">
-                  <div class="row">
-                    <div class="col-sm-2 text-center">
-                      <img class="img-avatar-post" src="https://pbs.twimg.com/profile_images/562273890815062016/qIGUYoRL_bigger.jpeg" alt="">
+                  <div ng-repeat="obj in messages">
+                    <div class="row">
+                      <div class="col-sm-2 text-center">
+                        <img class="img-avatar-post" src="https://pbs.twimg.com/profile_images/562273890815062016/qIGUYoRL_bigger.jpeg" alt="">
+                      </div>
+                      <div class="col-sm-10">
+                        <span class="name-user-message">
+                          <a href="{{obj.User.username}}">{{obj.User.name}}</a>
+                        </span>
+                        <span class="date-user-message">{{obj.createdAt | date:'HH:mm dd/MM/yyyy'}}</span>
+                        <br>
+                        <span class="message-user-message">{{obj.message}}</span>
+                      </div>
                     </div>
-                    <div class="col-sm-10">
-                      s
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-2 text-center">
-                      <img class="img-avatar-post" src="https://pbs.twimg.com/profile_images/562273890815062016/qIGUYoRL_bigger.jpeg" alt="">
-                    </div>
-                    <div class="col-sm-10">
-                      s
-                    </div>
+                    <hr ng-if="($index + 1) != messages.length">
                   </div>
                 </div>
               </div>

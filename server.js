@@ -88,31 +88,39 @@ app.get('/', function(req, res, next){
   }
 });
 
-app.get('/logout', function(req, res, next){
+app.get('/:user', isAuthenticated, function(req, res, next){
+  if(req.param('user') == req.user.username){
+    pages.me(req, res, next);
+  }else{
+    pages.user(req, res, next);
+  }
+});
+
+app.get('/api/logout', function(req, res, next){
   req.logout();
   res.redirect('/');
 });
 
-app.get('/error', function(req, res, next){
+app.get('/api/error', function(req, res, next){
   res.json({ success: 0 });
 });
 
-app.get('/me', isAuthenticatedPage, function(req, res, next){
+app.get('/api/me', isAuthenticatedPage, function(req, res, next){
   res.json({ name: req.user.name });
 });
 
-app.get('/message', isAuthenticated, message.all)
+app.get('/api/message', isAuthenticated, message.all)
 
-app.post('/login',
+app.post('/api/login',
   passport.authenticate('local', {
-    failureRedirect: '/error',
+    failureRedirect: '/api/error',
     failureFlash: true
   }), function(req, res, next) {
     res.json({ success: 1})
 });
 
-app.post('/user', user.persist)
-app.post('/write', isAuthenticatedPage, message.persist)
+app.post('/api/user', user.persist)
+app.post('/api/write', isAuthenticatedPage, message.persist)
 
 db.sequelize.sync({ force: false }).complete(function(err) {
   if (err) {

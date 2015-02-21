@@ -3,10 +3,14 @@ var passwordHash = require('password-hash');
 module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define('User', {
     name: {
-      type: DataTypes.STRING(60)
+      type: DataTypes.STRING(20)
     },
     email: {
       type: DataTypes.STRING(100),
+      unique: true
+    },
+    username: {
+      type: DataTypes.STRING(25),
       unique: true
     },
     message: {

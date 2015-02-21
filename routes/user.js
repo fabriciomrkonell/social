@@ -5,6 +5,18 @@ function isValid(user, res){
     res.json({ success: 0, field: "name", message: "Nome inválido!" });
     return false;
   }
+  if(user.name.length > 20){
+    res.json({ success: 0, field: "name", message: "O nome deve ter entre 5 e 20 caracteres!" });
+    return false;
+  }
+  if(user.username == ''){
+    res.json({ success: 0, field: "username", message: "Usuário inválido!"});
+    return false;
+  }
+  if(user.username.length > 25){
+    res.json({ success: 0, field: "username", message: "O usuário deve ter entre 5 e 25 caracteres!" });
+    return false;
+  }
   if(user.email == ''){
     res.json({ success: 0, field: "email", message: "Email inválido!"});
     return false;
@@ -29,7 +41,11 @@ exports.persist = function(req, res, next) {
       res.json({ success: 1, user: req.body })
     }).error(function(error){
       if(error.name == 'SequelizeUniqueConstraintError'){
-        res.json({ success: 2, message: "Já existe um usuário com esse email!"});
+        if(error.errors[0].path == "username"){
+          res.json({ success: 0, field: "username", message: "Já existe um cadastro com esse usuário!"});
+        }else{
+          res.json({ success: 0, field: "email", message: "Já existe um cadastro com esse email!"});
+        }
       }else{
         res.json({ success: 2 })
       }
