@@ -14,14 +14,16 @@ var express = require('express'),
     user = require('./routes/user'),
     utils = require('./routes/utils'),
     message = require('./routes/message'),
+    association = require('./routes/association'),
     route_passport = require('./configs/passport'),
-    pages = require('./configs/pages');
+    pages = require('./configs/pages'),
+    ejs = require('ejs');
 
 app.set('port', process.env.PORT || 3000)
 app.use(bodyParser())
 app.use(express.static(path.join(__dirname, 'app')))
 app.set('views', path.join(__dirname, 'app/views'));
-app.engine('html', require('ejs').renderFile);
+app.engine('html', ejs.renderFile);
 
 app.configure(function() {
   app.use(express.logger());
@@ -33,6 +35,34 @@ app.configure(function() {
   app.use(passport.session());
   app.use(app.router);
 });
+
+Array.prototype.indexOfOld = Array.prototype.indexOf;
+Array.prototype.indexOf = function(e,fn){
+  if(!fn){
+    return this.indexOfOld(e)
+  }else{
+    if(typeof fn ==='string'){
+      var att = fn;
+      fn = function(e){
+        return e[att];
+      }
+    }
+    return this.map(fn).indexOfOld(e);
+  }
+};
+
+app.locals.statusButton = function(userme, user, users) {
+  if(user == userme){
+    return 0;
+  }
+  var cod = users.indexOf(user, 'userFollow');
+  console.log(users);
+  if(cod == -1){
+    return 1;
+  }else{
+    return 2;
+  }
+}
 
 function isAuthenticatedPage(req, res, next) {
   if (req.isAuthenticated()){
@@ -91,6 +121,7 @@ app.get('/:user', isAuthenticated, function(req, res, next){
 });
 
 app.get('/search/:data', isAuthenticated, function(req, res, next){
+  console.log(req.user.followers);
   utils.search(req, res, next);
 });
 
@@ -122,6 +153,8 @@ app.get('/api/image/:id', isAuthenticatedPage, user.getImage)
 app.post('/api/user', user.persist)
 app.post('/api/update', isAuthenticatedPage, user.update)
 app.post('/api/write', isAuthenticatedPage, message.persist)
+app.post('/api/follow/:user', isAuthenticatedPage, association.follow)
+app.post('/api/unfollow/:user', isAuthenticatedPage, association.unfollow)
 
 db.sequelize.sync({ force: false }).complete(function(err) {
   if (err) {

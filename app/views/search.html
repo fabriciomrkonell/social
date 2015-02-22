@@ -36,6 +36,27 @@
                         <span class="date-user-message"><%= users[i].createdAt %></span>
                         <br>
                         <span class="message-user-message"><%= users[i].biography %></span>
+                        <% var status = statusButton(userid, users[i].id, usersFollowing) %>
+                        <% if(status == 2) {%>
+                          <div class="pull-right btn-follow hidden" id="userfollow<%= users[i].id %>">
+                            <button class="btn btn-default" type="button" onclick="follow(<%= users[i].id %>)">
+                              <i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;Seguir
+                            </button>
+                          </div>
+                          <div class="pull-right btn-unfollow" id="userunfollow<%= users[i].id %>">
+                            <button class="btn btn-danger" type="button" onclick="unfollow(<%= users[i].id %>)">Deixar de seguir</button>
+                          </div>
+                        <% } %>
+                        <% if(status == 1) {%>
+                          <div class="pull-right btn-follow" id="userfollow<%= users[i].id %>">
+                            <button class="btn btn-default" type="button" onclick="follow(<%= users[i].id %>)">
+                              <i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;Seguir
+                            </button>
+                          </div>
+                          <div class="pull-right btn-unfollow hidden" id="userunfollow<%= users[i].id %>">
+                            <button class="btn btn-danger" type="button" onclick="unfollow(<%= users[i].id %>)">Deixar de seguir</button>
+                          </div>
+                        <% } %>
                       </div>
                     </div>
                     <% if(users.length != (i + 1)) {%>
@@ -91,7 +112,6 @@
       </div>
     </div>
     <script type="text/javascript" src="/lib/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="/lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/js/ctrl/all.js"></script>
   </body>
 </html>

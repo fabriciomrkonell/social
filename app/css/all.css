@@ -9,3 +9,35 @@
 	font-size: 15px;
 	line-height: 21px;
 }
+
+.btn-follow{
+	margin-top: 14px;
+}
+
+.btn-follow button{	;
+	color: #0084B4;
+}
+
+.btn-follow button:hover{	;
+	color: #0084B4;
+}
+
+.btn-follow button:focus{	;
+	color: #0084B4;
+}
+
+.btn-unfollow{
+	margin-top: 14px;
+}
+
+.btn-unfollow button{	;
+	color: white;
+}
+
+.btn-unfollow button:hover{	;
+	color: white;
+}
+
+.btn-unfollow button:focus{	;
+	color: white;
+}
