@@ -51,14 +51,16 @@ module.exports = function(sequelize, DataTypes) {
     avatar: {
       type: DataTypes.BLOB,
       get: function(){
-        return new Buffer(this.getDataValue('avatar'), 'base64').toString('ascii');
+        if(this.getDataValue('avatar')){
+          return new Buffer(this.getDataValue('avatar'), 'base64').toString('ascii');
+        }
+        return '';
       }
     }
   }, {
     classMethods: {
       associate: function(models) {
         User.hasMany(models.Message, { onDelete: 'cascade' });
-        User.hasMany(models.Data, { onDelete: 'cascade' });
       }
     }
   });

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Rede Social Catarinense!">
+    <meta name="keywords" content="site, catarinense, santa catarina, rede social">
+    <title>Sou SC</title>
+    <link rel="shortcut icon" href="/img/icon.jpg">
+    <link href="/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/home.css" rel="stylesheet">
+    <link href="/css/all.css" rel="stylesheet">
+  </head>
+  <body>
+    <% include includes/header.html %>
+    <div class="container container-home">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="panel panel-default panel-login">
+                <div class="panel-heading">Usuários</div>
+                <div class="panel-body">
+                  <% for(var i = 0; i < users.length; i++) {%>
+                    <div class="row">
+                      <div class="col-sm-2 text-center">
+                        <a href="/<%= users[i].username %>">
+                          <img class="img-avatar-post" src="/api/image/<%= users[i].id %>">
+                        </a>
+                      </div>
+                      <div class="col-sm-10">
+                        <span class="name-user-message">
+                          <a href="/<%= users[i].username %>"><%= users[i].name %></a>
+                        </span>
+                        <span class="date-user-message"><%= users[i].createdAt %></span>
+                        <br>
+                        <span class="message-user-message"><%= users[i].biography %></span>
+                      </div>
+                    </div>
+                    <% if(users.length != (i + 1)) {%>
+                      <hr>
+                    <% } %>
+                  <% } %>
+                  <% if(users.length == 0) {%>
+                    <div class="text-center">
+                      <span class="no-data-text">Nenhum usuário encontrado!</span>
+                    </div>
+                  <% } %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="panel panel-default panel-login">
+                <div class="panel-heading">Mensagens</div>
+                <div class="panel-body">
+                  <% for(var u = 0; u < messages.length; u++) {%>
+                    <div class="row">
+                      <div class="col-sm-2 text-center">
+                        <a href="/<%= messages[u].User.username %>">
+                          <img class="img-avatar-post" src="/api/image/<%= messages[u].User.id %>">
+                        </a>
+                      </div>
+                      <div class="col-sm-10">
+                        <span class="name-user-message">
+                          <a href="/<%= messages[u].User.username %>"><%= messages[u].User.name %></a>
+                        </span>
+                        <span class="date-user-message"><%= messages[u].createdAt %></span>
+                        <br>
+                        <span class="message-user-message"><%= messages[u].message %></span>
+                      </div>
+                    </div>
+                    <% if(messages.length != (u + 1)) {%>
+                      <hr>
+                    <% } %>
+                  <% } %>
+                  <% if(messages.length == 0) {%>
+                    <div class="text-center">
+                      <span class="no-data-text">Nenhuma mensagem encontrada!</span>
+                    </div>
+                  <% } %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="/lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/ctrl/all.js"></script>
+  </body>
+</html>

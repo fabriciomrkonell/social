@@ -12,8 +12,9 @@ var express = require('express'),
     flash = require('connect-flash'),
     LocalStrategy = require('passport-local').Strategy,
     user = require('./routes/user'),
+    utils = require('./routes/utils'),
     message = require('./routes/message'),
-    route_passport = require('./routes/passport'),
+    route_passport = require('./configs/passport'),
     pages = require('./configs/pages');
 
 app.set('port', process.env.PORT || 3000)
@@ -32,10 +33,6 @@ app.configure(function() {
   app.use(passport.session());
   app.use(app.router);
 });
-
-if ('development' === app.get('env')) {
-  app.use(errorHandler())
-}
 
 function isAuthenticatedPage(req, res, next) {
   if (req.isAuthenticated()){
@@ -93,6 +90,10 @@ app.get('/:user', isAuthenticated, function(req, res, next){
   }
 });
 
+app.get('/search/:data', isAuthenticated, function(req, res, next){
+  utils.search(req, res, next);
+});
+
 app.get('/api/logout', function(req, res, next){
   req.logout();
   res.redirect('/');
@@ -106,10 +107,6 @@ app.get('/api/me', isAuthenticatedPage, function(req, res, next){
   res.json({ name: req.user.name });
 });
 
-app.get('/api/message', isAuthenticated, message.all)
-app.get('/api/message/me', isAuthenticated, message.all)
-app.get('/api/image/:id', isAuthenticatedPage, user.getImage)
-
 app.post('/api/login',
   passport.authenticate('local', {
     failureRedirect: '/api/error',
@@ -117,6 +114,10 @@ app.post('/api/login',
   }), function(req, res, next) {
     res.json({ success: 1})
 });
+
+app.get('/api/message', isAuthenticated, message.all)
+app.get('/api/message/me', isAuthenticated, message.all)
+app.get('/api/image/:id', isAuthenticatedPage, user.getImage)
 
 app.post('/api/user', user.persist)
 app.post('/api/update', isAuthenticatedPage, user.update)

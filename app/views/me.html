@@ -10,6 +10,7 @@
     <link rel="shortcut icon" href="/img/icon.jpg">
     <link href="/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/me.css" rel="stylesheet">
+    <link href="/css/all.css" rel="stylesheet">
   </head>
   <body ng-controller="ctrl-me" class="ng-cloak">
     <% include includes/header.html %>
@@ -22,7 +23,7 @@
           <div class="row">
             <div class="col-sm-3">
               <div class="img-me-avatar-container text-center image">
-                <img class="img-me-avatar thumbnail" src="data:image/jpeg;base64,<%- avatar %>">
+                <img class="img-me-avatar thumbnail" src="/api/image/<%- id %>">
               </div>
             </div>
             <div class="col-sm-5">
@@ -146,5 +147,6 @@
     <script type="text/javascript" src="/lib/angularjs/dist/angular-animate.min.js"></script>
     <script type="text/javascript" src="/lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/js/ctrl/me.js"></script>
+    <script type="text/javascript" src="/js/ctrl/all.js"></script>
   </body>
 </html>
