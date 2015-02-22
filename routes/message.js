@@ -20,6 +20,10 @@ function refresh(user, type){
   });
 };
 
+function persistData(data, user, status){
+  db.Data.create({ text: data, UserId: user.id, isUser: status});
+};
+
 exports.all = function(req, res, next) {
   db.Message.findAll({
     include: [ {
@@ -37,11 +41,16 @@ exports.refresh = function(req, res, next) {
   refresh(req, res, next);
 };
 
+exports.persistData = function(data, user, status) {
+  persistData(data, user, status);
+};
+
 exports.persist = function(req, res, next) {
   if(isValid(req.body, res)){
     req.body.UserId = req.user.id;
     db.Message.create(req.body).success(function(entity) {
       refresh(req.user.id, 'message');
+      persistData(req.body.message, req.user, false);
       var _return = {
         id: entity.id,
         message: entity.message,

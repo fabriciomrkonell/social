@@ -14,10 +14,7 @@ var express = require('express'),
     user = require('./routes/user'),
     message = require('./routes/message'),
     route_passport = require('./routes/passport'),
-    pages = require('./configs/pages'),
-    socketio = require('socket.io'),
-    io = socketio.listen(http),
-    client = null;
+    pages = require('./configs/pages');
 
 app.set('port', process.env.PORT || 3000)
 app.use(bodyParser())
@@ -130,11 +127,6 @@ db.sequelize.sync({ force: false }).complete(function(err) {
     throw err
   } else {
     http.listen(app.get('port'), function(){
-
-      io.on('connection', function (socket) {
-        console.log(socket);
-      });
-
     });
   }
 })
