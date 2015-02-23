@@ -1,23 +1,41 @@
 'use strict';
 
 function follow(user){
-	$.ajax({
-	  type: "POST",
-	  url: "/api/follow/" + user
-	}).done(function( msg ) {
-	  document.getElementById("userfollow" + user).classList.add("hidden");
-	  document.getElementById("userunfollow" + user).classList.remove("hidden");
-	});
+ 	var ajax;
+ 	if(navigator.appName == "Microsoft Internet Explorer"){
+ 		ajax = new ActiveXObject("Microsoft.XMLHTTP");
+  }else{
+  	ajax = new XMLHttpRequest();
+  }
+  ajax.open("POST", "/api/follow/" + user, true);
+  ajax.onreadystatechange = function () {
+  	if (ajax.readyState == 4) {
+   		if (ajax.status == 200) {
+   			document.getElementById("userfollow" + user).classList.add("hidden");
+	  		document.getElementById("userunfollow" + user).classList.remove("hidden");
+     	}
+  	}
+	};
+	ajax.send(null);
 };
 
 function unfollow(user){
-	$.ajax({
-	  type: "POST",
-	  url: "/api/unfollow/" + user
-	}).done(function( msg ) {
-	  document.getElementById("userunfollow" + user).classList.add("hidden");
-	  document.getElementById("userfollow" + user).classList.remove("hidden");
-	});
+	var ajax;
+ 	if(navigator.appName == "Microsoft Internet Explorer"){
+ 		ajax = new ActiveXObject("Microsoft.XMLHTTP");
+  }else{
+  	ajax = new XMLHttpRequest();
+  }
+  ajax.open("POST", "/api/unfollow/" + user, true);
+  ajax.onreadystatechange = function () {
+  	if (ajax.readyState == 4) {
+   		if (ajax.status == 200) {
+   			document.getElementById("userunfollow" + user).classList.add("hidden");
+	  		document.getElementById("userfollow" + user).classList.remove("hidden");
+     	}
+  	}
+	};
+	ajax.send(null);
 };
 
 function search(e){

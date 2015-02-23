@@ -41,3 +41,7 @@
 .btn-unfollow button:focus{	;
 	color: white;
 }
+
+.btn-user-follow-unfollow{
+	margin-top: 5px;
+}
