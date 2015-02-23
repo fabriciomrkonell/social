@@ -41,7 +41,7 @@ exports.follow = function(req, res, next) {
       res.json({ success: 1 });
     }else{
       db.Association.create(persist).success(function(entity) {
-        refresh(req.user.id);
+        refresh(req.user.id, parseInt(req.param('user')));
         res.json({ success: 1 });
       }).error(function(error){
         res.json({ success: 2 });
@@ -60,7 +60,7 @@ exports.unfollow = function(req, res, next) {
   }).success(function(entityAssociation){
     if(entityAssociation){
       entityAssociation.destroy().success(function(entity) {
-        refresh(req.user.id);
+        refresh(req.user.id, parseInt(req.param('user')));
         res.json({ success: 1 });
       }).error(function(error){
         res.json({ success: 2 });

@@ -56,7 +56,6 @@ app.locals.statusButton = function(userme, user, users) {
     return 0;
   }
   var cod = users.indexOf(user, 'userFollow');
-  console.log(users);
   if(cod == -1){
     return 1;
   }else{
@@ -121,7 +120,6 @@ app.get('/:user', isAuthenticated, function(req, res, next){
 });
 
 app.get('/search/:data', isAuthenticated, function(req, res, next){
-  console.log(req.user.followers);
   utils.search(req, res, next);
 });
 
